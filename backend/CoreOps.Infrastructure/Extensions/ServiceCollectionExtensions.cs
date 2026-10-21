@@ -1,6 +1,8 @@
 ﻿using CoreOps.Application.Operations.Repositories;
+using CoreOps.Application.Workflow.Repositories;
 using CoreOps.Infrastructure.Persistence;
 using CoreOps.Infrastructure.Persistence.Repositories.Operations;
+using CoreOps.Infrastructure.Persistence.Repositories.Workflow;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,8 @@ public static class ServiceCollectionExtensions
         });
 
         services.AddScoped<IRequestRepository, RequestRepository>();
+
+        services.AddScoped<IWorkflowDefinitionRepository, WorkflowDefinitionRepository>();
 
         return services;
     }

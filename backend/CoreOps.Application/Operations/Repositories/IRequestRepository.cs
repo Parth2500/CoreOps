@@ -5,4 +5,5 @@ namespace CoreOps.Application.Operations.Repositories;
 public interface IRequestRepository
 {
     Task AddAsync(Request request, CancellationToken cancellationToken);
+    Task<Request?> GetByIdAsync(Guid requestId, CancellationToken cancellationToken);
 }

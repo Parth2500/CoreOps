@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using CoreOps.Application.Common.Validation;
+using CoreOps.Application.Common.Exceptions;
 
 namespace CoreOps.Api.Middleware;
 
@@ -27,6 +28,16 @@ public class ExceptionHandlingMiddleware
             {
                 message = ex.Message,
                 errors = ex.Errors
+            };
+            await context.Response.WriteAsync(JsonSerializer.Serialize(response));
+        }
+        catch (NotFoundException ex)
+        {
+            context.Response.StatusCode = StatusCodes.Status404NotFound;
+            context.Response.ContentType = "application/json";
+            var response = new
+            {
+                message = ex.Message
             };
             await context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }

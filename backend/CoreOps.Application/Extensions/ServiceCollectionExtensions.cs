@@ -1,4 +1,5 @@
 ﻿using CoreOps.Application.Operations.CreateRequest;
+using CoreOps.Application.Operations.GetRequest;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreOps.Application.Extensions;
@@ -9,7 +10,11 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services)
     {
         // Handlers
+        // Create Request
         services.AddScoped<CreateRequestHandler>();
+        // Get Request
+        services.AddScoped<GetRequestByIdQueryHandler>();
+        // note: add more handlers here
 
         return services;
     }
